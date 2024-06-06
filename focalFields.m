@@ -9,14 +9,16 @@
 % xi, yi - vectors to generate mesh by ndgrid
 % Exi, Eyi, Ezi - Electric field complex vector in the desired plane -  E(x,y)
 function [xi, yi, Exi, Eyi, Ezi] = focalFields(lambda, NA, z, f0, f, rhoMax, N)
-k0=2*pi/lambda;
+
 
 E0 = 1; % Amplitude of the wave before focus
 
-thetaMax = asin(NA);
-
 n1 = 1; %Index of refraction in first medium  - only changes magnitude
 n2 = 1; %Index of refraction in second medium - only changes magnitude
+
+k0=2*pi/lambda*n2;
+
+thetaMax = asin(NA/n2);
 
 % z = 0e-6; % 0 means focal plane
 % w0 = 5e-3; % beam radius
@@ -84,6 +86,7 @@ Ezi = Fz(Xi, Yi);
 % title('Ez')
 % view(2)
 % axis square
+% pause
 % % 
 % % 
 % % 
